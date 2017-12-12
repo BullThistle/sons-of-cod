@@ -1,24 +1,54 @@
-# README
+#
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##### _Epicodus Solo Project in Rails_
 
-Things you may want to cover:
+## About
 
-* Ruby version
+_Sons of Cod_
 
-* System dependencies
 
-* Configuration
+## Building the App or Contributing
 
-* Database creation
+* Clone this repository
+* Install required dependencies
 
-* Database initialization
+```
+$ bundle install
+```
 
-* How to run the test suite
+* To run local server
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails s
+```
 
-* Deployment instructions
+* To set first user as admin
+```
+$ rails c
+$ @user = User.first
+$ @user.admin = true
+$ @user.save
+$ exit
+```
 
-* ...
+
+## Support and Contact Details
+
+Please contact [Rafael Furry](rfurry@gmail.com) with questions or comments.
+
+
+## Technologies Used
+
+* [rails](http://rubyonrails.org/)
+* [foundation](https://foundation.zurb.com/)
+
+## Contributors
+
+| [<img alt="Rafa" src="https://avatars0.githubusercontent.com/u/13779974?s=460&v=4" width="117">](https://github.com/bullthistle)
+|:---:|
+|[Rafa](https://github.com/bullthistle)|
+### License
+
+Copyright (c) 2017 **Rafael Furry**
+
+*This software is licensed under the MIT license.*
