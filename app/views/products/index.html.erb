@@ -1,0 +1,19 @@
+<h1 class="title">Products</h1>
+
+  <% if @products.any? %>
+    <div class="center">
+      <ul>
+        <% @products.each do |product| %>
+          <li><%= link_to product.name, product_path(product) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+  <div class="center">
+    <h3>No fishes sorry :(</h3>
+  </div>
+<% end %>
+
+<% if current_user.try(:admin?) %>
+  <%= link_to "New Product", new_product_path %>
+<% end %>

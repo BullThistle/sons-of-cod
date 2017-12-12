@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Sons of Cod" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Sons of Cod</li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+
+        <ul class="menu">
+          <% if user_signed_in? %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li><%= link_to "Log In", new_user_session_path %></li>
+          <% end %>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "Admin", "/admin"%></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <% if flash[:notice] %>
+      <div class="success callout small" data-closable="slide-out-right">
+        <p><%= notice %></p>
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert callout small" data-closable="slide-out-right">
+        <p><%= alert %></p>
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+    <%= yield %>
+    <% if user_signed_in? %>
+    <footer class="responsive-blog-footer">
+      <div class="parent">
+        <div class="middle-content">
+          <div class="row">
+            <div class="small-2 large-4 columns">
+              <h4 class="mailing-list">Join my mailing list</h4>
+              <input type="text" placeholder="Email Address">
+              <a class="button expanded subscribe-button" href="#">Subscribe Now</a>
+            </div>
+          </div>
+          <div class="row columns flex-container align-justify">
+             <p> © 2017 GNU GPL v2. Rafael Furry</p>
+            <div class="up-arrow">
+              <a href="#top"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+        </div>
+    </footer>
+    <% end %>
+  </div>
+  </body>
+</html>
